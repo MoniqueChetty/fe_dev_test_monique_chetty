@@ -30,60 +30,58 @@ export default function Home({ posts }) {
 
   return (
     <main>
-      <section className="container p-4 mx-auto ">
-        <div className="sm:flex sm:items-center sm:justify-between">
-          <div>
-            <div className="flex items-center gap-x-3">
-              <h1 className="text-lg font-medium text-gray-800 dark:text-white">
-                Home
-              </h1>
+      <section className="container p-4 mx-auto max-w-6xl">
+        {/* Search by id */}
+        <div className=" flex justify-between">
+          <div className="sm:flex sm:items-center sm:justify-between">
+            <div>
+              <div className="flex items-center gap-x-3"></div>
 
-              <span className="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full dark:bg-gray-800 dark:text-blue-400">
-                {allPosts.length} Posts
-              </span>
-            </div>
-
-            <div
-              className="mt-1 text-md text-blue-500 dark:text-gray-300 cursor-pointer"
-              onClick={viewAllPosts}
-            >
-              View All Available Posts.
+              <div
+                className="mt-1 text-md text-blue-500 dark:text-gray-300 cursor-pointer mr-5"
+                onClick={viewAllPosts}
+              >
+                View All Available Posts.
+                <span className="px-3 py-1 text-xs ml-5 text-blue-600 bg-blue-100 rounded-full dark:bg-gray-800 dark:text-blue-400">
+                  {allPosts.length} Posts
+                </span>
+              </div>
             </div>
           </div>
+          {/* Search Input */}
+          <form ref={ref} onSubmit={submitForm}>
+            <div className="mt-6 md:flex md:items-center md:justify-end">
+              <div className="relative flex items-center mt-4 md:mt-0">
+                <span className="absolute">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth="1.5"
+                    stroke="currentColor"
+                    className="w-5 h-5 mx-3 text-gray-400 dark:text-gray-600"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+                    />
+                  </svg>
+                </span>
+
+                <input
+                  type="text"
+                  placeholder="Search by id..."
+                  className="block w-full py-1.5 pr-5 text-gray-700 bg-white border border-gray-200 rounded-lg md:w-80 placeholder-gray-400/70 pl-11 rtl:pr-11 rtl:pl-5 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                  onChange={(e) => setFilterId(e.target.value)}
+                />
+                <button type="submit" className="hidden">
+                  Submit
+                </button>
+              </div>
+            </div>
+          </form>
         </div>
-        {/* Search Input */}
-        <form ref={ref} onSubmit={submitForm}>
-          <div className="mt-6 md:flex md:items-center md:justify-end">
-            <div className="relative flex items-center mt-4 md:mt-0">
-              <span className="absolute">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth="1.5"
-                  stroke="currentColor"
-                  className="w-5 h-5 mx-3 text-gray-400 dark:text-gray-600"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
-                  />
-                </svg>
-              </span>
-
-              <input
-                type="text"
-                placeholder="Search by id..."
-                className="block w-full py-1.5 pr-5 text-gray-700 bg-white border border-gray-200 rounded-lg md:w-80 placeholder-gray-400/70 pl-11 rtl:pr-11 rtl:pl-5 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
-                onChange={(e) => setFilterId(e.target.value)}
-              />
-              <button type="submit" className="hidden">
-                Submit
-              </button>
-            </div>
-          </div>
-        </form>
         {/* Table */}
         <Table allPosts={allPosts} />
 
@@ -141,7 +139,6 @@ export default function Home({ posts }) {
   );
 }
 
-// export async function getStaticProps() {
 export const getStaticProps = async () => {
   const res = await fetch("http://localhost:3000/api/posts");
   if (!res.ok) {
@@ -153,6 +150,6 @@ export const getStaticProps = async () => {
     props: {
       posts,
     },
-    revalidate: 3600, // Optional: Revalidate every 1 hours
+    revalidate: 7200, // Optional: Revalidate every 2 hours
   };
 };
