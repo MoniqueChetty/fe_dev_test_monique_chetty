@@ -4,6 +4,7 @@ import getPost from "../../../lib/getPost";
 import getComments from "../../../lib/getComments";
 import Image from "next/image";
 import Comments from "../../../components/Comments";
+import AddComment from "../../../components/AddComment";
 
 export default function PostPage({ postData, commentsData }) {
   const [profile, setProfile] = useState({});
@@ -66,21 +67,23 @@ export default function PostPage({ postData, commentsData }) {
                   height={64}
                   width={64}
                 />
-                <a
-                  href="/"
+                <div
                   className="mx-2 font-semibold text-gray-700 dark:text-gray-200"
                   tabIndex="0"
                   role="link"
                 >
                   {profile.name}
-                </a>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div className="flex mx-auto ">
+      <div className="max-w-2xl overflow-hidden mx-auto mt-4 bg-white rounded-lg shadow-md dark:bg-gray-800">
         <Comments commentsData={commentsData} />
+      </div>
+      <div className="max-w-2xl overflow-hidden mx-auto mt-4">
+        <AddComment postId={postData.id} />
       </div>
     </div>
   );

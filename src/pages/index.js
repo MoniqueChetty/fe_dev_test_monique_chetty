@@ -97,10 +97,7 @@ export default function Home({ posts }) {
           </div>
 
           <div className="flex items-center mt-4 gap-x-4 sm:mt-0">
-            <a
-              href="#"
-              className="flex items-center justify-center w-1/2 px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md sm:w-auto gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800"
-            >
+            <div className="flex items-center justify-center w-1/2 px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md sm:w-auto gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -117,12 +114,9 @@ export default function Home({ posts }) {
               </svg>
 
               <span>previous</span>
-            </a>
+            </div>
 
-            <a
-              href="/"
-              className="flex items-center justify-center w-1/2 px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md sm:w-auto gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800"
-            >
+            <div className="flex items-center justify-center w-1/2 px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md sm:w-auto gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800">
               <span>Next</span>
 
               <svg
@@ -139,7 +133,7 @@ export default function Home({ posts }) {
                   d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
                 />
               </svg>
-            </a>
+            </div>
           </div>
         </div>
       </section>
